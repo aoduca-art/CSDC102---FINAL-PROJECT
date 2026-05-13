@@ -56,7 +56,7 @@ public:
         cout << "1. Start Game" << endl;
         cout << "2. Leaderboard" << endl;
         cout << "3. Exit" << endl;
-        if (_kbhit()) {
+
         char input = _getch();
         switch (input) {
             case '1':
@@ -77,7 +77,6 @@ public:
                 Sleep(1000);
                 break;
         }
-    }
 }
     }
 void leaderboard() {
@@ -126,7 +125,6 @@ void displayMap() {
 }
 
 void movePlayer() {
-    if (_kbhit()) {
         char input = _getch();
         switch (input) {
             case 'w':
@@ -142,7 +140,6 @@ void movePlayer() {
                 if (playerX < 38) playerX++;
                 break;
         }
-    }
 }
 void gameLoop() {
     while (true) {
