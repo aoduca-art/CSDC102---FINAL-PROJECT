@@ -51,31 +51,38 @@ public:
         _getch();
     }
     void menu() {
+        while (true) {
+            system("cls");
         cout << "1. Start Game" << endl;
         cout << "2. Leaderboard" << endl;
         cout << "3. Exit" << endl;
-        int choice;
-        cin >> choice;
-        switch (choice) {
-            case 1:
+        if (_kbhit()) {
+        char input = _getch();
+        switch (input) {
+            case '1':
                 start();
                 mapSetup();
                 gameLoop();
                 break;
-            case 2:
+            case '2':
                 leaderboard();
+                Sleep(1000);
                 break;
-            case 3:
+            case '3':
                 end();
                 exit(0);
                 break;
             default:
                 cout << "Invalid choice!" << endl;
+                Sleep(1000);
                 break;
         }
     }
+}
+    }
 void leaderboard() {
         ifstream file("leaderboard.txt");
+        
         if (file.peek() == EOF) {
             cout << "No scores yet!" << endl;
         }
@@ -148,7 +155,6 @@ void gameLoop() {
             player.score += 1;
             playerY = 19;
             playerX = 20;
-            break;
         }
     }
 }
@@ -171,10 +177,10 @@ int main(){
     game.menu();
     while (game.player.life > 0) {
     game.gameLoop();
-        if (game.player.life <= 0) {
-            
+        
+        if (game.player.life <= 0) {            
             game.end();
-            ofstream file("leaderboard.txt", ios::app);
+            ofstream file("leaderboard.txt");
             if (file.is_open()) {
                 file << game.player.playerName << " - Score: " << game.player.score << endl;
                 file.close();
