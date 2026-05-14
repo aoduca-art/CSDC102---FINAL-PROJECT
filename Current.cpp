@@ -19,13 +19,13 @@
 
 using namespace std;
 
-struct Player {
+struct Player{
 	string playerName;
 	int score;
 	int life;
 };
 
-struct Obstacle {
+struct Obstacle{
 	int x;
 	int y;
 	int speed = 1;
@@ -34,12 +34,12 @@ struct Obstacle {
 	char symbol;
 };
 
-struct Node {
+struct Node{
 	Obstacle obstacle;
 	Node* next;
 };
 
-class Game {
+class Game{
 private:
 	char map[20][42];
 	Node* head = nullptr;
@@ -62,12 +62,12 @@ public:
 
 	bool finishedGame = false;
 
-	void setColor(int color) {
+	void setColor(int color){
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(hConsole, color);
 	}
 
-	void start() {
+	void start(){
 		system("cls");
 		cout << "======================================" << endl;
 		cout << "      ROAD CROSSING CHALLENGE" << endl;
@@ -86,15 +86,16 @@ public:
 		_getch();
 	}
 
-	void menu() {
-		while (true) {
+	void menu(){
+		while (true){
 			system("cls");
+			playMusic(3);
 			cout << "=========== MENU ===========" << endl;
 			cout << "1. Start Game" << endl;
 			cout << "2. Leaderboard" << endl;
 			cout << "3. Exit" << endl;
 			char input = _getch();
-			switch (input) {
+			switch (input){
 			case '1':
 				player.score = 0;
 				playerX = 19;
@@ -115,47 +116,48 @@ public:
 				exit(0);
 				break;
 			}
+			stopMusic();
 		}
 	}
 
-	void end() {
+	void end(){
 		system("cls");
 		cout << endl;
 		cout << "Game closing\n";
 		_getch();
 	}
 
-	void leaderboard() {
+	void leaderboard(){
 		system("cls");
 		ifstream file("leaderboard.txt");
-		if (!file) {
+		if (!file){
 			cout << "No leaderboard yet!" << endl;
 			return;
 		}
 		string line;
-		while (getline(file, line)) {
+		while (getline(file, line)){
 			cout << line << endl;
 		}
 		file.close();
 	}
 
-	void mapSetup() {
-		for (int y = 0; y < 20; y++) {
-			for (int x = 0; x < 42; x++) {
-				if (x == 0 || x == 41) {
+	void mapSetup(){
+		for (int y = 0; y < 20; y++){
+			for (int x = 0; x < 42; x++){
+				if (x == 0 || x == 41){
 					map[y][x] = '|';
-				} else if (y == 0 && x > 0 && x < 41) {
+				} else if (y == 0 && x > 0 && x < 41){
 					map[y][x] = '=';
-				} else if (y == 19 && x > 0 && x < 41) {
+				} else if (y == 19 && x > 0 && x < 41){
 					map[y][x] = ' ';
-				} else {
+				} else{
 					map[y][x] = '.';
 				}
 			}
 		}
 
 
-		for (int x = 1; x < 41; x++) {
+		for (int x = 1; x < 41; x++){
 			map[7][x] = '~';
 			map[8][x] = '~';
 			map[16][x] = '~';
@@ -163,52 +165,52 @@ public:
 		}
 	}
 	
-	void spawnObstacle() {
+	void spawnObstacle(){
 
-		int lanes[] = { 1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 14, 16, 17};
+		int lanes[] ={ 1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 14, 16, 17};
 
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < 14; i++){
 			int lane = lanes[i];
 
 			int chance = rand() % 100;
-			if (chance < 8) {
+			if (chance < 8){
 				char symbol;
 				int length;
 
-				if (lane == 7 || lane == 8 || lane == 16 || lane == 17) {
+				if (lane == 7 || lane == 8 || lane == 16 || lane == 17){
 					symbol = '=';
 					length = 4;
-				} else {
+				} else{
 					symbol = '#';
 					length = 5;
 				}
 
 				int direction;
 
-				if (lane % 2 == 0) {
+				if (lane % 2 == 0){
 					direction = 1;
-				} else {
+				} else{
 					direction = -1;
 				}
 
 				int x;
-				if (direction == 1) {
+				if (direction == 1){
 					x = -length;
-				} else {
+				} else{
 					x = 40;
 				}
-				if (!laneOccupied(lane,x)) {
+				if (!laneOccupied(lane,x)){
 					addObstacle(x, lane, length, direction, symbol);
 				}
 			}
 		}
 	}
 
-	bool laneOccupied(int lane, int x) {
+	bool laneOccupied(int lane, int x){
 		Node* temp = head;
-		while (temp != nullptr) {
-			if (temp->obstacle.y == lane) {
-				if (abs(temp->obstacle.x - x) < temp->obstacle.length + 2) {
+		while (temp != nullptr){
+			if (temp->obstacle.y == lane){
+				if (abs(temp->obstacle.x - x) < temp->obstacle.length + 2){
 					return true;
 				}
 			}
@@ -217,53 +219,53 @@ public:
 		return false;
 	}
 
-	void moveObstacles() {
+	void moveObstacles(){
 		Node* temp = head;
 		Node* prev = nullptr;
 
-		while (temp != nullptr) {
+		while (temp != nullptr){
 			temp->obstacle.x += temp->obstacle.direction * temp->obstacle.speed;
 
 			bool remove = false;
 
-			if (temp->obstacle.direction == 1 && temp->obstacle.x > 40) {
+			if (temp->obstacle.direction == 1 && temp->obstacle.x > 40){
 				remove = true;
-			} else if (temp->obstacle.direction == -1 && temp->obstacle.x + temp->obstacle.length < 0) {
+			} else if (temp->obstacle.direction == -1 && temp->obstacle.x + temp->obstacle.length < 0){
 				remove = true;
 			}
 
-			if (remove) {
+			if (remove){
 				Node* toDelete = temp;
-				if (prev == nullptr) {
+				if (prev == nullptr){
 					head = temp->next;
 					temp = head;
-				} else {
+				} else{
 					prev->next = temp->next;
 					temp = temp->next;
 				}
 				delete toDelete;
-			} else {
+			} else{
 				prev = temp;
 				temp = temp->next;
 			}
 		}
 	}
 
-	void displayMap() {
+	void displayMap(){
 
 		char mapCopy[20][42];
-		for (int y = 0; y < 20; y++) {
-			for (int x = 0; x < 42; x++) {
+		for (int y = 0; y < 20; y++){
+			for (int x = 0; x < 42; x++){
 				mapCopy[y][x] = map[y][x];
 			}
 		}
 		Node* temp = head;
 
-		while (temp != nullptr) {
-			for (int i = 0; i < temp->obstacle.length; i++) {
+		while (temp != nullptr){
+			for (int i = 0; i < temp->obstacle.length; i++){
 				int x = temp->obstacle.x + i;
 				int y = temp->obstacle.y;
-				if (x > 0 && x < 41) {
+				if (x > 0 && x < 41){
 					mapCopy[y][x] = temp->obstacle.symbol;
 				}
 			}
@@ -271,17 +273,17 @@ public:
 		}
 		mapCopy[playerY][playerX] = playerSymbol;
 
-		for (int y = 0; y < 20; y++) {
-			for (int x = 0; x < 42; x++) {
-				if (mapCopy[y][x] == '=') {
+		for (int y = 0; y < 20; y++){
+			for (int x = 0; x < 42; x++){
+				if (mapCopy[y][x] == '='){
 					setColor(11);
-				} else if (mapCopy[y][x] == '#') {
+				} else if (mapCopy[y][x] == '#'){
 					setColor(12);
-				} else if (mapCopy[y][x] == '~') {
+				} else if (mapCopy[y][x] == '~'){
 					setColor(9);
-				} else if (mapCopy[y][x] == 'P') {
+				} else if (mapCopy[y][x] == 'P'){
 					setColor(10);
-				} else {
+				} else{
 					setColor(7);
 				}
 
@@ -293,7 +295,7 @@ public:
 		setColor(7);
 	}
 
-	void addObstacle(int x, int y, int length, int direction, char symbol) {
+	void addObstacle(int x, int y, int length, int direction, char symbol){
 		Node* newNode = new Node;
 		newNode->obstacle.x = x;
 		newNode->obstacle.y = y;
@@ -301,40 +303,40 @@ public:
 		newNode->obstacle.direction = direction;
 		newNode->obstacle.symbol = symbol;
 		newNode->next = nullptr;
-		if (head == nullptr) {
+		if (head == nullptr){
 			head = newNode;
-		} else {
+		} else{
 			Node* temp = head;
-			while (temp->next != nullptr) {
+			while (temp->next != nullptr){
 				temp = temp->next;
 			}
 			temp->next = newNode;
 		}
 	}
 
-	void clearObstacles() {
+	void clearObstacles(){
 		Node* temp;
-		while (head != nullptr) {
+		while (head != nullptr){
 			temp = head;
 			head = head->next;
 			delete temp;
 		}
 	}
 
-	void moveWithLog() {
+	void moveWithLog(){
 
 		Node* temp = head;
 
-		while (temp != nullptr) {
+		while (temp != nullptr){
 
-			if (temp->obstacle.symbol == '=') {
+			if (temp->obstacle.symbol == '='){
 
-				for (int i = 0; i < temp->obstacle.length; i++) {
+				for (int i = 0; i < temp->obstacle.length; i++){
 
 					int x = temp->obstacle.x + i;
 
 					if (x == playerX &&
-					        temp->obstacle.y == playerY) {
+					        temp->obstacle.y == playerY){
 
 						playerX +=
 						    temp->obstacle.direction *
@@ -349,20 +351,20 @@ public:
 		}
 	}
 
-	bool isPlayerOnLog() {
+	bool isPlayerOnLog(){
 
 		Node* temp = head;
 
-		while (temp != nullptr) {
+		while (temp != nullptr){
 
-			if (temp->obstacle.symbol == '=') {
+			if (temp->obstacle.symbol == '='){
 
-				for (int i = 0; i < temp->obstacle.length; i++) {
+				for (int i = 0; i < temp->obstacle.length; i++){
 
 					int x = temp->obstacle.x + i;
 
 					if (x == playerX &&
-					        temp->obstacle.y == playerY) {
+					        temp->obstacle.y == playerY){
 
 						return true;
 					}
@@ -375,19 +377,19 @@ public:
 		return false;
 	}
 
-	void checkCollision() {
+	void checkCollision(){
 		Node* temp = head;
-		while (temp != nullptr) {
-			for (int i = 0; i < temp->obstacle.length; i++) {
+		while (temp != nullptr){
+			for (int i = 0; i < temp->obstacle.length; i++){
 				int x = temp->obstacle.x + i;
 				int y = temp->obstacle.y;
-				if (x == playerX && y == playerY) {
-					if (temp->obstacle.symbol == '#') {
+				if (x == playerX && y == playerY){
+					if (temp->obstacle.symbol == '#'){
 						player.life--;
 						playerX = 19;
 						playerY = 19;
 						return;
-					} else if (temp->obstacle.symbol == '=') {
+					} else if (temp->obstacle.symbol == '='){
 						// Riding log, do nothing
 					}
 				}
@@ -396,12 +398,12 @@ public:
 		}
 		bool onLog = false;
 		temp = head;
-		while (temp != nullptr) {
-			if (temp->obstacle.symbol == '=') {
-				for (int i = 0; i < temp->obstacle.length; i++) {
+		while (temp != nullptr){
+			if (temp->obstacle.symbol == '='){
+				for (int i = 0; i < temp->obstacle.length; i++){
 					int x = temp->obstacle.x + i;
 					int y = temp->obstacle.y;
-					if (x == playerX && y == playerY) {
+					if (x == playerX && y == playerY){
 						onLog = true;
 					}
 				}
@@ -409,7 +411,7 @@ public:
 			temp = temp->next;
 		}
 		if (map[playerY][playerX] == '~' &&
-		        !isPlayerOnLog()) {
+		        !isPlayerOnLog()){
 
 			player.life--;
 			playerX = 19;
@@ -418,12 +420,12 @@ public:
 		}
 	}
 
-	void movePlayer() {
-	if (_kbhit()) {
+	void movePlayer(){
+	if (_kbhit()){
 		char input = _getch();
-		if (input == 0 || input == 224) {
+		if (input == 0 || input == 224){
 			input = _getch();
-			switch (input) {
+			switch (input){
 			case KEY_UP:
 				if (playerY > 0)
 					playerY--;
@@ -441,8 +443,8 @@ public:
 					playerX++;
 				break;
 			}
-		} else {
-			switch (input) {
+		} else{
+			switch (input){
 			case 'w':
 			case 'W':
 				if (playerY > 0)
@@ -468,38 +470,47 @@ public:
 	}
 }
 
-	void topUI() {
+	void topUI(){
 	cout << "Player: " << player.playerName;
 	cout << " | Lives: " << player.life;
 	cout << " | Crossings: "
 	     << player.score << endl;
 }
 
-	void bottomUI() {
+	void bottomUI(){
 	gotoXY(0, 23);
 	cout << "Avoid trucks (#) and water (~). Ride logs (=)." << endl;
 }
 
-	void playMusic() {
+	void playMusic(int x){
+	
+	if (x == 1){
 	PlaySound(TEXT("DS_backgroundMusic.wav"),
 	          NULL,
 	          SND_FILENAME | SND_ASYNC | SND_LOOP);
-}
-	void playGameOverMusic() {
+			  }
+
+	else if (x == 2){
 	PlaySound(TEXT("DS_gameOver.wav"),
 	          NULL,
 	          SND_FILENAME | SND_ASYNC);
+			  }
+	else if (x == 3){
+	PlaySound(TEXT("DS_menuMusic.wav"),
+	          NULL,
+	          SND_FILENAME | SND_ASYNC | SND_LOOP);
+			  }
 	}
 
-	void stopMusic() {
+	void stopMusic(){
 	PlaySound(0, 0, 0);
 }
 
-	void gameLoop() {
+	void gameLoop(){
 	gotoXY(0,0);
-	playMusic();
+	playMusic(1);
 
-	while (player.life > 0) {
+	while (player.life > 0){
 		spawnObstacle();
 
 		movePlayer();
@@ -514,18 +525,17 @@ public:
 		bottomUI();
 
 
-		if (playerY == 0) {
-			player.score += 200;
+		if (playerY == 0){
+			player.score += 1;
 			playerX = 19;
 			playerY = 19;
-
 		}
 		Sleep(120);
 	}
 	stopMusic();
 	if (player.score == 0){
 		system("cls");
-		playGameOverMusic();
+		playMusic(2);
 		cout << "Better luck next time, " << player.playerName << "!" << endl;
 		cout << "Game Over!" << endl;
 		_getch();
