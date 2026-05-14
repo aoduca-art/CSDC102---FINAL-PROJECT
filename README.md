@@ -4,13 +4,15 @@ Road Crossing Challenge
 
 
 added titleScreen();
-
+removed titleScreen();
 
 
 made Current.cpp
 
 Pending - 
 - [ ] top 5 leaderboard
+- [ ] fix arrow movements
+- [ ] improve titleScreen()
 
 Done -
 - [x] Generating Obstacle 
