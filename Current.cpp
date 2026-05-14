@@ -169,9 +169,13 @@ void movePlayer() {
 // Music
 
 void playMusic(){
-    /* NOTES for Music Player: 
+    /* 
+    NOTES for Music Player: 
+    https://www.youtube.com/watch?v=zOljIjBJvRI
     1. Only accepts .wav 
     2. Doesn't accept invalid characters like foreign languages, use English as filename
+    3. Compile with "g++ Current.cpp -o game.exe -lwinmm", -lwimm is the most important
+    https://stackoverflow.com/questions/78319034/cannot-get-playsound-to-work-in-visual-studio-code
     */ 
     PlaySound(TEXT("DS_backgroundMusic.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 }
