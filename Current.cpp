@@ -5,6 +5,10 @@
 #include <iomanip>
 #include <cstdlib>
 
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
 
 using namespace std;
 
@@ -127,6 +131,7 @@ void displayMap() {
 void movePlayer() {
         char input = _getch();
         switch (input) {
+            // ASWD
             case 'w':
                 if (playerY > 0) playerY--;
                 break;
@@ -137,6 +142,19 @@ void movePlayer() {
                 if (playerX > 1) playerX--;
                 break;
             case 'd':
+                if (playerX < 38) playerX++;
+                break;
+            // Arrow keys
+            case KEY_UP:
+                if (playerY > 0) playerY--;
+                break;
+            case KEY_DOWN:
+                if (playerY < 19) playerY++;
+                break;
+            case KEY_LEFT:
+                if (playerX > 1) playerX--;
+                break;
+            case KEY_RIGHT:
                 if (playerX < 38) playerX++;
                 break;
         }
