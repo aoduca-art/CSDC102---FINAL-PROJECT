@@ -1,9 +1,15 @@
 #include <iostream>
 #include <conio.h>
-#include <windows.h>
+#include <Windows.h>
 #include <fstream>
 #include <iomanip>
 #include <cstdlib>
+#include <string>
+
+// Music, only accepts .WAV file
+#include <mmsystem.h>
+#pragma comment (lib, "winmm.lib")
+
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -159,7 +165,22 @@ void movePlayer() {
                 break;
         }
 }
+
+// Music
+
+void playMusic(){
+    /* NOTES for Music Player: 
+    1. Only accepts .wav 
+    2. Doesn't accept invalid characters like foreign languages, use English as filename
+    */ 
+    PlaySound(TEXT("DS_backgroundMusic.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+}
+void endMusic(){
+    PlaySound(0, 0, 0);
+}
+
 void gameLoop() {
+    playMusic();
     while (true) {
         system("cls");
         topUI();
