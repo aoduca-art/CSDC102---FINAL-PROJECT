@@ -10,15 +10,18 @@ added titleScreen();
 made current.cpp
 
 Missing -
-Generating Obstacle 
-background music
-cleaner refresh rate
+- [ ] Generating Obstacle 
+- [ ] cleaner refresh rate
 
-
+Done - 
+- [x] arrow keys movement (tho using ASWD and ARROW keys give you +2 movement)
+- [x] background music,
+\
+Compile with `"g++ Current.cpp -o game.exe -lwinmm"` -lwimm is the most important
 
 Currently working - 
-made struct player 
-made class game 
+- [x] made struct player 
+- [x] made class game 
   - void start()
   - void end()
   - void menu()
