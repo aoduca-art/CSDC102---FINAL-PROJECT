@@ -122,6 +122,7 @@ public:
 		system("cls");
 		cout << endl;
 		cout << "Game closing\n";
+		_getch();
 	}
 
 	void leaderboard() {
@@ -161,6 +162,7 @@ public:
 			map[17][x] = '~';
 		}
 	}
+	
 	void spawnObstacle() {
 
 		int lanes[] = { 1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 14, 16, 17};
@@ -214,7 +216,6 @@ public:
 		}
 		return false;
 	}
-
 
 	void moveObstacles() {
 		Node* temp = head;
@@ -417,8 +418,7 @@ public:
 		}
 	}
 
-
-void movePlayer() {
+	void movePlayer() {
 	if (_kbhit()) {
 		char input = _getch();
 		if (input == 0 || input == 224) {
@@ -468,29 +468,34 @@ void movePlayer() {
 	}
 }
 
-void topUI() {
+	void topUI() {
 	cout << "Player: " << player.playerName;
 	cout << " | Lives: " << player.life;
 	cout << " | Crossings: "
 	     << player.score << endl;
 }
 
-void bottomUI() {
+	void bottomUI() {
 	gotoXY(0, 23);
 	cout << "Avoid trucks (#) and water (~). Ride logs (=)." << endl;
 }
 
-void playMusic() {
+	void playMusic() {
 	PlaySound(TEXT("DS_backgroundMusic.wav"),
 	          NULL,
 	          SND_FILENAME | SND_ASYNC | SND_LOOP);
 }
+	void playGameOverMusic() {
+	PlaySound(TEXT("DS_gameOver.wav"),
+	          NULL,
+	          SND_FILENAME | SND_ASYNC);
+	}
 
-void stopMusic() {
+	void stopMusic() {
 	PlaySound(0, 0, 0);
 }
 
-void gameLoop() {
+	void gameLoop() {
 	gotoXY(0,0);
 	playMusic();
 
@@ -518,12 +523,20 @@ void gameLoop() {
 		Sleep(120);
 	}
 	stopMusic();
+	if (player.score == 0){
+		system("cls");
+		playGameOverMusic();
+		cout << "Better luck next time, " << player.playerName << "!" << endl;
+		cout << "Game Over!" << endl;
+		_getch();
+		stopMusic();
+	}
+
 	ofstream file("leaderboard.txt", ios::app);
 	file << "Name: " << player.playerName
 	     << " | Score: " << player.score;
 	file << endl;
 	file.close();
-	end();
 }
 
 };
