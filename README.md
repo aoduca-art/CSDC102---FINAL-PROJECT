@@ -11,17 +11,14 @@ The game simulate a player crossing a road filled with moving obstacles and also
 * [Workflow](#Workflow)
 
 ### Documentation
+- One-page report
+![Report](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/Documentation.pdf)
 - Titlescreen
-<p align="center">
-  <img src="https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/titlescreen.png" height="640" width="640">
-</p>
-
+![Titlescreen](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/titlescreen.png)
 - Gameplay
-  
-<p align="center">
-  <img src="https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/gameplay.gif" height="640" width="640">
-</p>
-
+![Gameplay](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/gameplay.mp4)
+- Leaderboard
+![Leaderboard](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/leaderboard.png)
 ## Installation 
 1. Options for install:  
  A.  Click the green code, [download ZIP](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/archive/refs/heads/main.zip) and extract \
@@ -30,7 +27,7 @@ The game simulate a player crossing a road filled with moving obstacles and also
 git https://github.com/aoduca-art/CSDC102---FINAL-PROJECT.git
 ```
 
-2. Open Current.cpp file and open terminal, build with:
+2. Open roadCrossing.cpp file and open terminal, build with:
 > [!WARNING]
 > The last line "-lwinmm" is important for the code to work.
 ```
@@ -44,11 +41,10 @@ g++ roadCrossing.cpp -o game.exe -lwinmm
 - added titleScreen();
 - removed titleScreen();
 - replace with showMenu();
-- made Current.cpp
+- made Current.cpp to roadCrossing.cpp
 ---
 ### Done 
 \- 5/15
-- [x] Improve README.md with documentation and installation
 - [x] top 5 leaderboard
 - [x] fix arrow movements
 - [x] improve titleScreen()
@@ -61,7 +57,7 @@ g++ roadCrossing.cpp -o game.exe -lwinmm
 - [x] arrow keys movement (tho using ASWD and ARROW keys give you +2 movement)
 - [x] background music,
  
-> Compile with `"g++ Current.cpp -o game.exe -lwinmm"` -lwimm is the most important
+> Compile with `"g++ roadCrossing.cpp -o game.exe -lwinmm"` -lwimm is the most important
 
 ---
 ### Currently working
