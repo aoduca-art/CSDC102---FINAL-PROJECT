@@ -516,7 +516,9 @@ cout << R"(
 
 	void bottomUI(){
 	gotoXY(0, 23);
-	cout << "Avoid trucks (#) and water (~). Ride logs (=)." << endl;
+	cout << "     Avoid "; setColor(12); cout << "trucks "; setColor(7); cout << "("; setColor(12); cout << "#";  setColor(7); cout << ") and ";
+    setColor(9); cout << "water "; setColor(7); cout << "("; setColor(9); cout << "~"; setColor(7); cout << "). \n              Ride "; setColor(11); cout << "logs "; setColor(7); cout << "("; setColor(11); cout << "="; setColor(7); cout << ")" << endl;
+	
 }
 
 	void playMusic(int x){
