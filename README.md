@@ -12,9 +12,9 @@ made Current.cpp
 Pending - 
 - [ ] top 5 leaderboard
 - [ ] fix arrow movements
-- [ ] improve titleScreen()
 
 Done -
+- [x] improve titleScreen()
 - [x] Generating Obstacle 
 - [x] cleaner refresh rate 
 - [x] arrow keys movement (tho using ASWD and ARROW keys give you +2 movement)
