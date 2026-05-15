@@ -34,7 +34,7 @@ git https://github.com/aoduca-art/CSDC102---FINAL-PROJECT.git
 > [!WARNING]
 > The last line "-lwinmm" is important for the code to work.
 ```
-g++ Current.cpp -o game.exe -lwinmm
+g++ roadCrossing.cpp -o game.exe -lwinmm
 ```
 
 3. Double click or open "game.exe"
