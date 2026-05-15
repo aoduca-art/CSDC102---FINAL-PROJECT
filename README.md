@@ -5,16 +5,17 @@ Road Crossing Challenge
 
 added titleScreen();
 removed titleScreen();
-
+replace with showMenu();
 
 made Current.cpp
 
-Pending - 
-- [ ] top 5 leaderboard
-- [ ] fix arrow movements
-
-Done -
+Done - 5/15
+- [x] top 5 leaderboard
+- [x] fix arrow movements
 - [x] improve titleScreen()
+
+Done - 5/14
+
 - [x] Generating Obstacle 
 - [x] cleaner refresh rate 
 - [x] arrow keys movement (tho using ASWD and ARROW keys give you +2 movement)
@@ -24,7 +25,7 @@ Compile with `"g++ Current.cpp -o game.exe -lwinmm"` -lwimm is the most importan
 
 
 Currently working -
-4/12 - 4/13
+- 5/12 - 5/13
 - [x] made struct player 
 - [x] made class game 
   - void start()
@@ -35,7 +36,8 @@ Currently working -
   - void displayMap()
   - void movePlayer()
   - void gameLoop()
-4/14/2026 -
+- 5/14
+  - void gotoXY();
   - void playMusic()
   - void stopMusic()
   - void topUI()
@@ -48,5 +50,7 @@ Currently working -
   - void Obstacles()
   - remade displayMap()
   - void moveObstacles()
+- 5/15
+  - void showMenu();
   - bool landOccupied()
   - void spawnObstacle()
