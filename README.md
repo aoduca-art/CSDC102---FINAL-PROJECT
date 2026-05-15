@@ -12,9 +12,16 @@ The game simulate a player crossing a road filled with moving obstacles and also
 
 ### Documentation
 - Titlescreen
-![Titlescreen](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/titlescreen.png)
+<p align="center">
+  <img src="https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/titlescreen.png" height="640" width="640">
+</p>
+
 - Gameplay
-![Gameplay](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/gameplay.gif)
+  
+<p align="center">
+  <img src="https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/gameplay.gif" height="640" width="640">
+</p>
+
 ## Installation 
 1. Options for install:  
  A.  Click the green code, [download ZIP](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/archive/refs/heads/main.zip) and extract \
@@ -41,6 +48,7 @@ g++ Current.cpp -o game.exe -lwinmm
 ---
 ### Done 
 \- 5/15
+- [x] Improve README.md with documentation and installation
 - [x] top 5 leaderboard
 - [x] fix arrow movements
 - [x] improve titleScreen()
