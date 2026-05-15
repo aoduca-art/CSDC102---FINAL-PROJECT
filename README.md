@@ -12,13 +12,13 @@ The game simulate a player crossing a road filled with moving obstacles and also
 
 ### Documentation
 - One-page report
-![Report](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/Documentation.pdf)
+![Report](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/Documentation.pdf)
 - Titlescreen
-![Titlescreen](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/titlescreen.png)
+![Titlescreen](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/titlescreen.png)
 - Gameplay
-![Gameplay](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/gameplay.mp4)
+![Gameplay](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/gameplay.mp4)
 - Leaderboard
-![Leaderboard](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/tree/main/Documentation/leaderboard.png)
+![Leaderboard](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/blob/main/Documentation/leaderboard.png)
 ## Installation 
 1. Options for install:  
  A.  Click the green code, [download ZIP](https://github.com/aoduca-art/CSDC102---FINAL-PROJECT/archive/refs/heads/main.zip) and extract \
