@@ -34,8 +34,7 @@ struct Obstacle
  char symbol;
 };
 
-struct Node
-{
+struct Node{
  Obstacle obstacle;
  Node *next;
 };
@@ -192,8 +191,6 @@ cout << R"(
   while (file >> players[count].name >> players[count].score)
   {
    count++;
-   if (count > 4)
-    break;
   }
 
   file.close();
@@ -222,16 +219,12 @@ cout << R"(
   {
 
    string rank;
-
-   if (i == 0)
-    rank = "1st";
-   else if (i == 1)
-    rank = "2nd";
-   else if (i == 2)
-    rank = "3rd";
-   else
-    rank = to_string(i + 1) + "th";
-
+   if (i > 4){break;                    }
+   else if (i == 0){ rank = "1st";      }
+   else if (i == 1){rank = "2nd";       }
+   else if (i == 2){rank = "3rd";       }
+   else{ rank = to_string(i + 1) + "th";}
+   
    cout << left << setw(10) << rank;
    cout << setw(15) << players[i].name;
    cout << "Score: " << players[i].score << endl;
@@ -401,12 +394,10 @@ cout << R"(
 
   while (temp != nullptr)
   {
-   for (int i = 0; i < temp->obstacle.length; i++)
-   {
+   for (int i = 0; i < temp->obstacle.length; i++){
     int x = temp->obstacle.x + i;
     int y = temp->obstacle.y;
-    if (x > 0 && x < 41)
-    {
+    if (x > 0 && x < 41){
      mapCopy[y][x] = temp->obstacle.symbol;
     }
    }
@@ -482,8 +473,7 @@ cout << R"(
   }
  }
 
- void moveWithLog()
- {
+ void moveWithLog(){
 
   Node *temp = head;
 
@@ -515,9 +505,7 @@ cout << R"(
   }
  }
 
- bool isPlayerOnLog()
- {
-
+ bool isPlayerOnLog(){
   Node *temp = head;
 
   while (temp != nullptr)
@@ -572,6 +560,7 @@ cout << R"(
    }
    temp = temp->next;
   }
+  
   bool onLog = false;
   temp = head;
   while (temp != nullptr)
@@ -745,8 +734,7 @@ cout << R"(
   ofstream file("leaderboard.txt", ios::app);
   file << player.playerName
     << " "
-    << player.score
-    << endl;
+    << player.score;
   file << endl;
   file.close();
  }
